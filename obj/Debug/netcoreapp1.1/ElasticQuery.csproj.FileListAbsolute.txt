@@ -1,0 +1,9 @@
+/Users/miladrk/Development/Projects/ElasticQuery/bin/Debug/netcoreapp1.1/ElasticQuery.deps.json
+/Users/miladrk/Development/Projects/ElasticQuery/bin/Debug/netcoreapp1.1/ElasticQuery.runtimeconfig.json
+/Users/miladrk/Development/Projects/ElasticQuery/bin/Debug/netcoreapp1.1/ElasticQuery.runtimeconfig.dev.json
+/Users/miladrk/Development/Projects/ElasticQuery/bin/Debug/netcoreapp1.1/ElasticQuery.dll
+/Users/miladrk/Development/Projects/ElasticQuery/bin/Debug/netcoreapp1.1/ElasticQuery.pdb
+/Users/miladrk/Development/Projects/ElasticQuery/obj/Debug/netcoreapp1.1/ElasticQuery.csprojResolveAssemblyReference.cache
+/Users/miladrk/Development/Projects/ElasticQuery/obj/Debug/netcoreapp1.1/ElasticQuery.AssemblyInfo.cs
+/Users/miladrk/Development/Projects/ElasticQuery/obj/Debug/netcoreapp1.1/ElasticQuery.dll
+/Users/miladrk/Development/Projects/ElasticQuery/obj/Debug/netcoreapp1.1/ElasticQuery.pdb

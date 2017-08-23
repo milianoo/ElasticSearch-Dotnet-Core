@@ -1,0 +1,32 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "/Users/miladrk/Development/Projects/ElasticQuery/ElasticQuery.csproj",
+    "projectName": "ElasticQuery",
+    "projectPath": "/Users/miladrk/Development/Projects/ElasticQuery/ElasticQuery.csproj",
+    "outputPath": "/Users/miladrk/Development/Projects/ElasticQuery/obj/",
+    "projectStyle": "PackageReference",
+    "originalTargetFrameworks": [
+      "netcoreapp1.1"
+    ],
+    "frameworks": {
+      "netcoreapp1.1": {
+        "projectReferences": {}
+      }
+    }
+  },
+  "frameworks": {
+    "netcoreapp1.1": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "target": "Package",
+          "version": "1.1.1"
+        },
+        "NEST": {
+          "target": "Package",
+          "version": "5.5.0"
+        }
+      }
+    }
+  }
+}
