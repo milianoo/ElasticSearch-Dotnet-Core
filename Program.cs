@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Elasticsearch.Net;
 using Nest;
 
@@ -48,7 +49,7 @@ namespace ElasticQuery
             var person2 = new Person
             {
                 Id = 2,
-                FirstName = "Marjan",
+                FirstName = "Milad",
                 LastName = "Gjuroski", 
                 Skills = new List<string>() { "Communication", "Speaking", "Humor" },
                 Others = new Dictionary<string, string>()
@@ -68,10 +69,51 @@ namespace ElasticQuery
                     .Id(person2.Id)
                     .Refresh(Refresh.True));
         }
+
+        static void QueyrDistinct()
+        {
+            var result = _client.Search<Person>(s => s
+                .Size(0)
+                .Aggregations(a => a
+                    .Terms("firstname", t => t.Field(f => f.FirstName))
+                    .Terms("lastname", t => t.Field(f => f.LastName))
+                )
+                .Query(q => q
+                    .MatchAll()
+                )
+            );
+            
+            var uniqueOwnerUserIds = result.Aggs.Terms("FirstNames").Buckets.Select(b => b.KeyAsString).ToList();
+
+            if (result.IsValid)
+            {
+                var outputs = result.Documents;
+                Log($"Queyr Distinct Found {outputs.Count} results");
+                foreach (var output in outputs)
+                {
+                    Log($"\t - {output.FirstName}");
+                } 
+            }
+        }
+        
+        static void SearchDictionaryKeyExist()
+        {
+            var searchResponse = _client.Search<Person>(s => s
+                .From(0)
+                .Size(10)
+                .Query(q => q
+                    .Exists(m => m.Field(f => f.Others["Address"]))
+                )
+            );
+
+            var people = searchResponse.Documents;
+            
+            Log($"Search Dictionary Key Using Match Query Found {people.Count} results");
+        }
         
         static void SearchDictionaryUsingMatch()
         {
-                        var searchResponse = _client.Search<Person>(s => s
+            var searchResponse = _client.Search<Person>(s => s
                 .From(0)
                 .Size(10)
                 .Query(q => q
@@ -162,9 +204,12 @@ namespace ElasticQuery
 
             IndexPersons();
 //            DeleteIndexes();
-                
-            QueryFirstNameOnlyAndSorting();
+
+//            QueyrDistinct(); 
             
+            QueryFirstNameOnlyAndSorting();
+
+            SearchDictionaryKeyExist();
             SearchDictionaryUsingMatch();
             SearchDictionaryUsingMatchPhrasePrefix();
             SearchDynamicUsingMatchPhrasePrefix();
